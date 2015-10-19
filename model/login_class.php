@@ -17,13 +17,10 @@ class conexion {
     $this->servidor = "localhost";
     $this->password = ""; 
     
-        
-    
-
 
     }
     
-    
+ 
     public  function conectar(){
         
         $this->conect = mysql_connect($this->servidor, $this->usuario, $this->password) or die ("problemas con tratar de conectar con el servidor");
