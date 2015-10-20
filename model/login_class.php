@@ -8,11 +8,10 @@ class conexion {
     private $servidor ;
     private $password ; 
     private $conect;
-    private $encad; 
- 
+    
     public function conexion (){
 
-    $this->db = "proyecto_adsi";
+    $this->db = "proyecto_uno";
     $this->usuario = "root";
     $this->servidor = "localhost";
     $this->password = ""; 

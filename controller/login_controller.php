@@ -2,8 +2,8 @@
 session_start();
 require_once '../model/login_class.php';
 
-$proceso = $_REQUEST['petition'];
-$instancia = new login_controller($_REQUEST['txtUsername'],$_REQUEST['txtPassword']);
+$proceso = $_REQUEST['solicitud'];
+$instancia = new login_controller($_REQUEST['realname'],$_REQUEST['pass'],$_REQUEST['rpass']);
 
 switch ($proceso) {
     case("validalogin"):
@@ -35,13 +35,13 @@ class login_controller {
             $_SESSION['username'] = $this->username;
             $_SESSION['password'] = $this->password;
             $_SESSION['fullname'] = $validacion["usu_primer_nombre"].$validacion["usu_primer_apellido"];
-            echo "<script>alert('Bienvenido a Help Desk ".$validacion["usu_primer_nombre"]."')</script>";
-            header("Location: ../index.php");
+            echo "<script>alert('Bienvenido a proyecto ADSI  ".$validacion["usu_primer_nombre"]."')</script>";
+            header("Location: ../frm_login.php");
         }
     }
 
     public function logout() {
         session_destroy();
-        header("Location: ../index.php");   
+        header("Location: ../view/frm_login.php");   
     }
 }

@@ -6,7 +6,7 @@
 		<link rel="stylesheet" href="bootstrap/css/bootstrap.css">
 		<link rel="stylesheet" href="bootstrap/css/bootstrap-responsive.css">
 		<link rel="stylesheet" type="text/css" href="estilos/estilos.css">
-	<title>Proyecto academias</title>
+	<title>Proyecto ADSI 751314</title>
 </head>
 <body background="images/golf.jpg" style="background-attachment: fixed" >
 	<center><div class="tit"><h2 style="color: #0000FF; ">Inicio de sesión</h2>
@@ -30,7 +30,7 @@
 <br>
 <!-- formulario registro -->
 
-<form method="post" action="" name="frmLogin" action="controller/login_controller.php?petition=validalogin" method="POST" autocomplete="off">
+<form method="post" name="frmLogin" action="controller/login_controller.php?solicitud=validalogin" method="POST" autocomplete="off">
   <fieldset>
     <legend  style="font-size: 18pt"><b>Registro</b></legend>
     <div class="form-group">
