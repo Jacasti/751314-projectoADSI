@@ -1,28 +1,47 @@
 <?php
+session_start();
+require_once '../model/login_class.php';
 
-	$realname=$_POST['realname'];
-	$mail=$_POST['nick'];
-	$pass= $_POST['pass'];
-	$rpass=$_POST['rpass'];
+$proceso = $_REQUEST['petition'];
+$instancia = new login_controller($_REQUEST['txtUsername'],$_REQUEST['txtPassword']);
 
-	require("login_class.php");
-	$checkemail=mysql_query("SELECT * FROM usuarios WHERE email='$use_correo'");
-	$check_mail=mysql_num_rows($checkemail);
-		if($pass==$rpass){
-			if($check_mail>0){
-				echo ' <script language="javaScript">alert("Atencion, ya existe el mail designado para un usuario, verifique sus datos");</script> ';
-			}else{
-				
-				//require("connect_db.php");
-				mysql_query("INSERT INTO usuarios VALUES('','$usu_username','$usu_password','$usu_correo','')");
-				//echo 'Se ha registrado con exito';
-				echo ' <script language="javaScript">alert("Usuario registrado con éxito");</script> ';
-				mysql_close($link);
-			}
-			
-		}else{
-			echo 'Las contraseñas son incorrectas';
-		}
+switch ($proceso) {
+    case("validalogin"):
+        $instancia->validalogin();
+        break;
+    case("logout"):
+        $instancia->logout();
+        break;
+}
 
-	
-?>
+class login_controller {
+    private $username;
+    private $password;
+    private $login;
+            
+    function __construct($username,$password) {
+        $this->username = $username;
+        $this->password = $password;
+        $this->login = new login_class();
+    }
+
+    public function validalogin() {
+        $validacion = $this->login->login($this->username,  $this->password);
+        
+        if (!$validacion) {
+            echo "<script>alert('El usuario y contrasena son incorrectas')</script>";
+            echo '<meta http-equiv="refresh" content="0; url=../index.php" />';
+        } else {
+            $_SESSION['username'] = $this->username;
+            $_SESSION['password'] = $this->password;
+            $_SESSION['fullname'] = $validacion["usu_primer_nombre"].$validacion["usu_primer_apellido"];
+            echo "<script>alert('Bienvenido a Help Desk ".$validacion["usu_primer_nombre"]."')</script>";
+            header("Location: ../index.php");
+        }
+    }
+
+    public function logout() {
+        session_destroy();
+        header("Location: ../index.php");   
+    }
+}

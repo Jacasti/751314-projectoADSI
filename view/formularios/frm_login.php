@@ -30,7 +30,7 @@
 <br>
 <!-- formulario registro -->
 
-<form method="post" action="" >
+<form method="post" action="" name="frmLogin" action="controller/login_controller.php?petition=validalogin" method="POST" autocomplete="off">
   <fieldset>
     <legend  style="font-size: 18pt"><b>Registro</b></legend>
     <div class="form-group">
