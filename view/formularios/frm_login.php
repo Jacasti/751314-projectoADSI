@@ -12,7 +12,7 @@ session_start();
   </head>
 <body align="center">
     <h1 align="center">INICIA SESSION PROYECTO ADSI </h1>
-	<form>
+	<form name="frm_Login" action="controller/login_controller.php?solicitud=validalogin" method="POST" autocomplete="off">
             <table class="fondo" align="center" id="frm-table">
               <tr>
 		<td>

@@ -3,7 +3,7 @@ session_start();
 require_once '../model/login_class.php';
 
 $proceso = $_REQUEST['solicitud'];
-$instancia = new login_controller($_REQUEST['realname'],$_REQUEST['pass'],$_REQUEST['rpass']);
+$instancia = new login_controller($_REQUEST['txtUsername'],$_REQUEST['txtPassword'],$_REQUEST['cboSeleccionRol']);
 
 switch ($proceso) {
     case("validalogin"):
