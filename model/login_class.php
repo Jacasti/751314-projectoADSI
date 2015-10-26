@@ -1,42 +1,18 @@
 <?php
+require_once 'conexion_class.php';
 
-class conexion {
-    
-    
-    private $db;
-    private $usuario;
-    private $servidor ;
-    private $password ; 
-    private $conect;
-    
-    public function conexion (){
+class login_class {
+    private $conexion;
 
-    $this->db = "proyecto_uno";
-    $this->usuario = "root";
-    $this->servidor = "localhost";
-    $this->password = ""; 
-    
+    public function __construct() {
+        $this->conexion = new conexion_class();
+        $this->conexion->conexion();
+    }
 
+    public function login($username, $password) {
+        $sql = "SELECT * FROM USUARIOS WHERE usu_username = '".$username."' AND usu_password = '".$password."';";
+        $query = $this->conexion->consultarQuery($sql);
+
+        return $query;
     }
-    
- 
-    public  function conectar(){
-        
-        $this->conect = mysql_connect($this->servidor, $this->usuario, $this->password) or die ("problemas con tratar de conectar con el servidor");
-        return $this->conect; 
-       
-    }
-    
-    public function seleccion_db(){
-        
-    mysql_select_db($this->db , $this->conect) or die ("problemas al tratar de conectar con la base de datos");
-    
-        
-        
-    }
-    
-  
 }
-
-?>
-
